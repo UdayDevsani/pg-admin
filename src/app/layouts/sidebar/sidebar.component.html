@@ -1,11 +1,33 @@
-<aside id="sidebar" class="sidebar">
+<aside id="sidebar" class="sidebar" [class.active]="isActive">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link" routerLink="/">
+      <a class="nav-link" routerLink="/dashboard">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
     </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-book"></i>
+        <span>Booking Rooms</span>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" routerLink="/add-booking-rooms" routerLinkActive="active"> Booking Rooms</a></li>
+        <li><a class="dropdown-item" routerLink="/booking-list" routerLinkActive="active">Booking List</a></li>
+      </ul>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-grid"></i>
+        <span>Rooms</span>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" routerLink="/add-rooms" routerLinkActive="active"> Add Rooms</a></li>
+        <li><a class="dropdown-item" routerLink="/room-list" routerLinkActive="active">Rooms List</a></li>
+      </ul>
+    </li>
+
     <!-- Add the rest of the sidebar content -->
   </ul>
 </aside>

@@ -1,0 +1,84 @@
+<div class="dashboard">
+  <h2>Dashboard</h2>
+
+
+  <!-- Existing cards -->
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let card of cards">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">{{ card.title }}</h3>
+              <p class="card-text">{{ card.value }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="col-md-4">
+      <div class="dropdown">
+        <button (click)="toggleDropdown()" class="dropdown-button">
+          <i class="bi bi-plus-circle"></i> Quick Actions
+        </button>
+        <ul [ngClass]="{ 'show': isDropdownOpen, 'hide': !isDropdownOpen }" class="card" style="width: 208px;">
+          <li class="card-body" *ngFor="let action of quickActions">
+            <a [routerLink]="action.link">
+              <i class="bi bi-arrow-right"></i> {{ action.label }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ECharts Container -->
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="card-title">Rooms Overview</h3>
+          <div id="roomsChart" style="width: 100%; height: 400px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="card-title">Revenue Overview</h3>
+          <div id="revenueChart" style="width: 100%; height: 400px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Bookings Card -->
+  <!-- Upcoming Check-ins/Check-outs Card -->
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3 class="card-title">Recent Bookings</h3>
+          <ul class="list-unstyled">
+            <li *ngFor="let booking of recentBookings">{{ booking.details }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Upcoming Check-ins/Check-outs</h3>
+          <ul class="list-unstyled">
+            <li *ngFor="let activity of upcomingActivities">{{ activity.details }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

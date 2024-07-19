@@ -1,8 +1,9 @@
-<app-header></app-header>
-<div class="d-flex">
-  <app-sidebar></app-sidebar>
-  <main class="main-content flex-grow-1 p-3">
-    <app-main-content></app-main-content>
-  </main>
+<!-- app.component.html -->
+<app-header (toggleSidebar)="toggleSidebar()"></app-header>
+
+<div class="app-container">
+  <app-sidebar [isActive]="isActive"></app-sidebar>
+  <app-main-content [isFullWidth]="isContentFullWidth"></app-main-content>
 </div>
+
 <app-footer></app-footer>

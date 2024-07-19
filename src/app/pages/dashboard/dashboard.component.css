@@ -1,0 +1,85 @@
+.dashboard {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto; /* Center align the dashboard */
+}
+
+.row {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Ensure space between columns */
+}
+
+.col {
+  flex: 1;
+  min-width: 250px; /* Set a minimum width for columns */
+  padding: 10px;
+  box-sizing: border-box; /* Include padding in the element's width and height */
+  margin-bottom: 20px; /* Add space between rows */
+}
+
+.metric-card, .chart-card, .latest-activities {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.chart-card {
+  background-color: #f9f9f9;
+}
+
+.chart-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.actions-dropdown {
+  margin-top: 20px;
+  position: relative;
+}
+
+.dropdown-button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.dropdown-button i {
+  margin-right: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+.show {
+  display: block !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .col {
+    min-width: 100%; /* Make columns full width on small screens */
+    margin-bottom: 20px; /* Add space between columns */
+  }
+
+  .dropdown-button {
+    width: 100%; /* Ensure dropdown button is full width on small screens */
+  }
+}

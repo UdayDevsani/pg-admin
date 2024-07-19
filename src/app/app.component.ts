@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pg-admin';
+  isActive: boolean = false;
+  isContentFullWidth: boolean = false;
+
+  toggleSidebar() {
+    this.isActive = !this.isActive;
+    this.isContentFullWidth = !this.isActive;
+  }
 }

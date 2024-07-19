@@ -7,6 +7,9 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { MainContentComponent } from './layouts/main-content/main-content.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { MainContentComponent } from './layouts/main-content/main-content.compon
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    MainContentComponent
+    MainContentComponent,
+    LoginComponent,
+    SignupComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

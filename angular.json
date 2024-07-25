@@ -16,6 +16,7 @@
             "outputPath": "dist/pg-admin",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "outputHashing": "none",
             "polyfills": [
               "zone.js"
             ],
@@ -43,7 +44,7 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "none"
             },
             "development": {
               "buildOptimizer": false,
@@ -51,7 +52,8 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "outputHashing": "none"
             }
           },
           "defaultConfiguration": "production"

@@ -1,84 +1,154 @@
-<div class="dashboard">
-  <h2>Dashboard</h2>
+<div class="pagetitle">
+  <h1>Dashboard</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item active">Dashboard</li>
+    </ol>
+  </nav>
+</div>
 
-
-  <!-- Existing cards -->
+<section class="section dashboard">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-lg-8">
       <div class="row">
-        <div class="col-md-4 mb-4" *ngFor="let card of cards">
-          <div class="card">
+
+        <!-- Sales Card -->
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card sales-card">
+
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <h6>Filter</h6>
+                </li>
+
+                <li><a class="dropdown-item" href="#">Today</a></li>
+                <li><a class="dropdown-item" href="#">This Month</a></li>
+                <li><a class="dropdown-item" href="#">This Year</a></li>
+              </ul>
+            </div>
+
             <div class="card-body">
-              <h3 class="card-title">{{ card.title }}</h3>
-              <p class="card-text">{{ card.value }}</p>
+              <h5 class="card-title">Sales <span>| Today</span></h5>
+
+              <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-cart"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>145</h6>
+                  <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- End Sales Card -->
+
+        <!-- Revenue Card -->
+        <div class="col-xxl-4 col-md-6">
+          <div class="card info-card revenue-card">
+
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <h6>Filter</h6>
+                </li>
+
+                <li><a class="dropdown-item" href="#">Today</a></li>
+                <li><a class="dropdown-item" href="#">This Month</a></li>
+                <li><a class="dropdown-item" href="#">This Year</a></li>
+              </ul>
+            </div>
+
+            <div class="card-body">
+              <h5 class="card-title">Revenue <span>| This Month</span></h5>
+
+              <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-currency-dollar"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>$3,264</h6>
+                  <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- End Revenue Card -->
+
+        <!-- Customers Card -->
+        <div class="col-xxl-4 col-xl-12">
+
+          <div class="card info-card customers-card">
+
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <h6>Filter</h6>
+                </li>
+
+                <li><a class="dropdown-item" href="#">Today</a></li>
+                <li><a class="dropdown-item" href="#">This Month</a></li>
+                <li><a class="dropdown-item" href="#">This Year</a></li>
+              </ul>
+            </div>
+
+            <div class="card-body">
+              <h5 class="card-title">Customers <span>| This Year</span></h5>
+
+              <div class="d-flex align-items-center">
+                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="bi bi-people"></i>
+                </div>
+                <div class="ps-3">
+                  <h6>1244</h6>
+                  <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+
+                </div>
+              </div>
+
             </div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Quick Actions -->
-    <div class="col-md-4">
-      <div class="dropdown">
-        <button (click)="toggleDropdown()" class="dropdown-button">
-          <i class="bi bi-plus-circle"></i> Quick Actions
-        </button>
-        <ul [ngClass]="{ 'show': isDropdownOpen, 'hide': !isDropdownOpen }" class="card" style="width: 208px;">
-          <li class="card-body" *ngFor="let action of quickActions">
-            <a [routerLink]="action.link">
-              <i class="bi bi-arrow-right"></i> {{ action.label }}
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+        </div><!-- End Customers Card -->
 
+        <!-- Reports -->
+        <div class="col-12">
+          <div class="card">
 
-  <!-- ECharts Container -->
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h3 class="card-title">Rooms Overview</h3>
-          <div id="roomsChart" style="width: 100%; height: 400px;"></div>
-        </div>
-      </div>
-    </div>
+            <div class="filter">
+              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <li class="dropdown-header text-start">
+                  <h6>Filter</h6>
+                </li>
 
-    <div class="col-lg-6">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h3 class="card-title">Revenue Overview</h3>
-          <div id="revenueChart" style="width: 100%; height: 400px;"></div>
-        </div>
+                <li><a class="dropdown-item" href="#">Today</a></li>
+                <li><a class="dropdown-item" href="#">This Month</a></li>
+                <li><a class="dropdown-item" href="#">This Year</a></li>
+              </ul>
+            </div>
+
+            <div class="card-body">
+              <h5 class="card-title">Reports <span>/Today</span></h5>
+
+              <!-- Line Chart -->
+              <div id="roomsChart" style="height: 350px;"></div>
+              <!-- End Line Chart -->
+
+            </div>
+
+          </div>
+        </div><!-- End Reports -->
       </div>
     </div>
   </div>
-
-  <!-- Recent Bookings Card -->
-  <!-- Upcoming Check-ins/Check-outs Card -->
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h3 class="card-title">Recent Bookings</h3>
-          <ul class="list-unstyled">
-            <li *ngFor="let booking of recentBookings">{{ booking.details }}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-6">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title">Upcoming Check-ins/Check-outs</h3>
-          <ul class="list-unstyled">
-            <li *ngFor="let activity of upcomingActivities">{{ activity.details }}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</section>

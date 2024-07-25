@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as echarts from 'echarts';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
+
   totalRooms = 50;
   bookedRooms = 30;
   availableRooms = 20;
   totalGuests = 45;
   newBookings = 5;
   pendingInquiries = 2;
-  revenue = [2000,7000,8000,10000];
+  revenue = [2000, 7000, 8000, 10000];
   recentBookings = [
     { details: 'Booking 1 details' },
     { details: 'Booking 2 details' }
@@ -44,9 +45,12 @@ export class DashboardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  ngAfterViewInit(): void {
     this.initRoomsChart();
     this.initRevenueChart();
+    // this.initReportsChart();
   }
 
   toggleDropdown() {
@@ -91,7 +95,7 @@ export class DashboardComponent implements OnInit {
       },
       xAxis: {
         type: 'category',
-        data: ['Revenue']
+        data: ['Q1', 'Q2', 'Q3', 'Q4']
       },
       yAxis: {
         type: 'value'
@@ -100,11 +104,10 @@ export class DashboardComponent implements OnInit {
         name: 'Revenue',
         type: 'scatter',
         smooth: true,
-        data: [this.revenue]
+        data: this.revenue
       }]
     };
 
     revenueChart.setOption(revenueOption);
   }
 }
-

@@ -1,9 +1,10 @@
-<!-- app.component.html -->
-<app-header (toggleSidebar)="toggleSidebar()"></app-header>
+<app-header *ngIf="authService.isLoggedIn()" (toggleSidebar)="toggleSidebar()"></app-header>
+<app-sidebar *ngIf="authService.isLoggedIn()" [isActive]="isSidebarToggled"></app-sidebar>
 
-<div class="app-container">
-  <app-sidebar [isActive]="isActive"></app-sidebar>
-  <app-main-content [isFullWidth]="isContentFullWidth"></app-main-content>
-</div>
+<main id="main" class="main" *ngIf="authService.isLoggedIn()">
+  <router-outlet></router-outlet>
+</main>
 
-<app-footer></app-footer>
+<app-footer *ngIf="authService.isLoggedIn()"></app-footer>
+
+<router-outlet *ngIf="!authService.isLoggedIn()"></router-outlet>

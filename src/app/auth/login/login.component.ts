@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { NotificationService } from '../../services/notification.service';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
   constructor(
@@ -21,20 +21,24 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-    username: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    remember: [false]
-  });}
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      remember: [false]
+    });
+  }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
-      if (this.authService.login(username, password)) {
-        this.notificationService.success('Login successful');
-        this.router.navigate(['/dashboard']);
-      } else {
-        this.notificationService.error('Invalid username or password');
-      }
+      this.authService.login(username, password).subscribe(
+        response => {
+          this.notificationService.success('Login successful');
+          this.router.navigate(['/dashboard']);
+        },
+        error => {
+          this.notificationService.error('Invalid username or password');
+        }
+      );
     } else {
       this.showFieldErrors();
     }

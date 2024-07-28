@@ -13,6 +13,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './auth/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 export function initializeApp(authService: AuthService) {
   return (): Promise<void> => {
@@ -38,6 +39,7 @@ export function initializeApp(authService: AuthService) {
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    HttpClientModule
   ],providers: [
     {
       provide: APP_INITIALIZER,

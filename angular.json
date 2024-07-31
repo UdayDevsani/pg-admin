@@ -28,7 +28,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["src/assets/vendor/echarts/echarts.min.js"]
           },
           "configurations": {
             "production": {

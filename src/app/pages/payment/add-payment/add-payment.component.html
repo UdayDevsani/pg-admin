@@ -1,0 +1,59 @@
+<div class="modal fade" id="addEditPaymentModal" tabindex="-1" aria-labelledby="addEditPaymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addEditPaymentModalLabel">{{ isEditMode ? 'Edit Payment' : 'Add Payment' }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="paymentForm" (ngSubmit)="submitForm()">
+          <div class="mb-3">
+            <label for="booking_id" class="form-label">Booking ID</label>
+            <input type="number" class="form-control" id="booking_id" formControlName="booking_id" required>
+            <div *ngIf="paymentForm.get('booking_id')?.invalid && paymentForm.get('booking_id')?.touched" class="text-danger">
+              Booking ID is required.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="amount" class="form-label">Amount</label>
+            <input type="number" class="form-control" id="amount" formControlName="amount" required>
+            <div *ngIf="paymentForm.get('amount')?.invalid && paymentForm.get('amount')?.touched" class="text-danger">
+              Valid amount is required.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="payment_date" class="form-label">Payment Date</label>
+            <input type="date" class="form-control" id="payment_date" formControlName="payment_date" required>
+            <div *ngIf="paymentForm.get('payment_date')?.invalid && paymentForm.get('payment_date')?.touched" class="text-danger">
+              Payment date is required.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="payment_method" class="form-label">Payment Method</label>
+            <select class="form-control" id="payment_method" formControlName="payment_method" required>
+              <option value="cash">Cash</option>
+              <option value="credit_card">Credit Card</option>
+              <option value="debit_card">Debit Card</option>
+              <option value="net_banking">Net Banking</option>
+            </select>
+            <div *ngIf="paymentForm.get('payment_method')?.invalid && paymentForm.get('payment_method')?.touched" class="text-danger">
+              Payment method is required.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-control" id="status" formControlName="status" required>
+              <option value="paid">Paid</option>
+              <option value="pending">Pending</option>
+              <option value="failed">Failed</option>
+            </select>
+            <div *ngIf="paymentForm.get('status')?.invalid && paymentForm.get('status')?.touched" class="text-danger">
+              Status is required.
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update' : 'Add' }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

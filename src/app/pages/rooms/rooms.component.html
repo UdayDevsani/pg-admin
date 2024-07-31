@@ -1,0 +1,59 @@
+<div class="pagetitle">
+  <h1>Rooms</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item">Rooms</li>
+      <li class="breadcrumb-item active">Rooms Tables</li>
+    </ol>
+  </nav>
+</div>
+
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title d-flex justify-content-between align-items-center">
+            Room's List
+            <button type="button" class="btn btn-primary" (click)="openAddRoomModal()">Add Room</button>
+          </h5>
+
+          <!-- Table displaying Rooms -->
+          <table class="table datatable">
+            <thead>
+              <tr>
+                <th>Room Number</th>
+                <th>Type</th>
+                <th>Rent</th>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let room of rooms">
+                <td>{{ room.room_number }}</td>
+                <td>{{ room.type }}</td>
+                <td>{{ room.rent }}</td>
+                <td>{{ room.status }}</td>
+                <td>{{ room.description }}</td>
+                <td>
+                  <button type="button" class="btn btn-primary" (click)="openEditRoomModal(room)">Edit</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteRoom(room.room_id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal for Adding/Editing Room -->
+<app-add-room
+  [room]="selectedRoom"
+  [isEditMode]="isEditMode"
+  (roomUpdated)="onRoomUpdated()">
+</app-add-room>

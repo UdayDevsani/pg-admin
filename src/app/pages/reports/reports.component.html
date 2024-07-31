@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <h2>Reports</h2>
+
+  <div class="my-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <h3>Occupancy Report</h3>
+      <button class="btn btn-primary" (click)="generatePDFReport('occupancy')">Generate PDF</button>
+    </div>
+    <table class="table table-bordered mt-2">
+      <thead>
+        <tr>
+          <th>Report ID</th>
+          <th>Room Number</th>
+          <th>Occupant Name</th>
+          <th>Occupancy Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let report of occupancyReports">
+          <td>{{ report.report_id }}</td>
+          <td>{{ report.room_number }}</td>
+          <td>{{ report.occupant_name }}</td>
+          <td>{{ report.occupancy_date | date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="my-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <h3>Payment Report</h3>
+      <button class="btn btn-primary" (click)="generatePDFReport('payment')">Generate PDF</button>
+    </div>
+    <table class="table table-bordered mt-2">
+      <thead>
+        <tr>
+          <th>Report ID</th>
+          <th>Booking ID</th>
+          <th>Amount</th>
+          <th>Payment Date</th>
+          <th>Payment Method</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let report of paymentReports">
+          <td>{{ report.report_id }}</td>
+          <td>{{ report.booking_id }}</td>
+          <td>{{ report.amount | currency }}</td>
+          <td>{{ report.payment_date | date }}</td>
+          <td>{{ report.payment_method }}</td>
+          <td>{{ report.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

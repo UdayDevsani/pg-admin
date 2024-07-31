@@ -1,0 +1,39 @@
+<div class="modal fade" id="addEditBookingModal" tabindex="-1" aria-labelledby="addEditBookingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addEditBookingModalLabel">{{ isEditMode ? 'Edit Booking' : 'Add Booking' }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="user_id" class="form-label">User ID</label>
+            <input type="number" formControlName="user_id" class="form-control" id="user_id">
+          </div>
+          <div class="mb-3">
+            <label for="room_id" class="form-label">Room ID</label>
+            <input type="number" formControlName="room_id" class="form-control" id="room_id">
+          </div>
+          <div class="mb-3">
+            <label for="start_date" class="form-label">Start Date</label>
+            <input type="date" formControlName="start_date" class="form-control" id="start_date">
+          </div>
+          <div class="mb-3">
+            <label for="end_date" class="form-label">End Date</label>
+            <input type="date" formControlName="end_date" class="form-control" id="end_date">
+          </div>
+          <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select formControlName="status" class="form-control" id="status">
+              <option value="booked">Booked</option>
+              <option value="canceled">Canceled</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update' : 'Add' }} Booking</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,113 +1,138 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { DashboardService } from '../../services/dashboard/dashboard.service';
 import * as echarts from 'echarts';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
+  totalUsers: number = 0;
+  totalRooms: number = 0;
+  totalBookings: number = 0;
+  totalPayments: number = 0;
+  lineChartOptions: any;
+  barChartOptions: any;
+  pieChartOptions: any;
+  fetchedChartData: any;
 
-  totalRooms = 50;
-  bookedRooms = 30;
-  availableRooms = 20;
-  totalGuests = 45;
-  newBookings = 5;
-  pendingInquiries = 2;
-  revenue = [2000, 7000, 8000, 10000];
-  recentBookings = [
-    { details: 'Booking 1 details' },
-    { details: 'Booking 2 details' }
-  ];
-  upcomingActivities = [
-    { details: 'Activity 1 details' },
-    { details: 'Activity 2 details' }
-  ];
+  constructor(private dashboardService: DashboardService) { }
 
-  isDropdownOpen = false;
-
-  cards = [
-    { title: 'Total Rooms', value: this.totalRooms },
-    { title: 'Booked Rooms', value: this.bookedRooms },
-    { title: 'Available Rooms', value: this.availableRooms },
-    { title: 'Total Guests', value: this.totalGuests },
-    { title: 'New Bookings', value: this.newBookings },
-    { title: 'Pending Inquiries', value: this.pendingInquiries },
-    { title: 'Revenue', value: this.revenue }
-  ];
-
-  quickActions = [
-    { label: 'Book a Room', link: '/book' },
-    { label: 'View Rooms', link: '/rooms' },
-    { label: 'Add New Room', link: '/add-room' },
-    { label: 'Manage Guests', link: '/manage-guests' },
-    { label: 'Send Notifications', link: '/send-notifications' }
-  ];
-
-  constructor() { }
-
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.fetchDashboardData();
+  }
 
   ngAfterViewInit(): void {
-    this.initRoomsChart();
-    this.initRevenueChart();
-    // this.initReportsChart();
+    // Initialize charts only after data is fetched
   }
 
-  toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
+  fetchDashboardData(): void {
+    this.dashboardService.getDashboardData().subscribe(data => {
+      this.totalUsers = data.totalUsers;
+      this.totalRooms = data.totalRooms;
+      this.totalBookings = data.totalBookings;
+      this.totalPayments = data.totalPayments;
+      this.fetchedChartData = data.chartData; // Assuming the data structure
+
+      this.initializeCharts();
+    });
   }
 
-  initRoomsChart() {
-    const roomsChart = echarts.init(document.getElementById('roomsChart') as HTMLDivElement);
+  initializeCharts(): void {
+    this.initializeLineChart();
+    this.initializeBarChart();
+    this.initializePieChart();
+  }
 
-    const roomsOption = {
+  initializeLineChart(): void {
+    this.lineChartOptions = {
       title: {
-        text: 'Rooms Overview'
+        text: 'Room Occupancy'
       },
-      tooltip: {},
-      legend: {
-        data: ['Rooms']
-      },
-      xAxis: {
-        data: ['Total Rooms', 'Booked Rooms', 'Available Rooms']
-      },
-      yAxis: {},
-      series: [{
-        name: 'Rooms',
-        type: 'bar',
-        data: [this.totalRooms, this.bookedRooms, this.availableRooms]
-      }]
-    };
-
-    roomsChart.setOption(roomsOption);
-  }
-
-  initRevenueChart() {
-    const revenueChart = echarts.init(document.getElementById('revenueChart') as HTMLDivElement);
-
-    const revenueOption = {
-      title: {
-        text: 'Revenue Overview'
-      },
-      tooltip: {},
-      legend: {
-        data: ['Revenue']
+      tooltip: {
+        trigger: 'axis'
       },
       xAxis: {
         type: 'category',
-        data: ['Q1', 'Q2', 'Q3', 'Q4']
+        data: this.fetchedChartData.lineChart.xAxisData
       },
       yAxis: {
         type: 'value'
       },
-      series: [{
-        name: 'Revenue',
-        type: 'scatter',
-        smooth: true,
-        data: this.revenue
-      }]
+      series: [
+        {
+          name: 'Occupancy',
+          type: 'line',
+          data: this.fetchedChartData.lineChart.seriesData
+        }
+      ]
     };
 
-    revenueChart.setOption(revenueOption);
+    const lineChartDom = document.getElementById('line-chart') as HTMLElement;
+    const lineChart = echarts.init(lineChartDom);
+    lineChart.setOption(this.lineChartOptions);
+  }
+
+  initializeBarChart(): void {
+    this.barChartOptions = {
+      title: {
+        text: 'Bookings per Day'
+      },
+      tooltip: {
+        trigger: 'axis'
+      },
+      xAxis: {
+        type: 'category',
+        // data: this.fetchedChartData.barChart.xAxisData
+        data: [120, 200, 150, 80, 70, 110, 130]
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          name: 'Bookings',
+          type: 'bar',
+          // data: this.fetchedChartData.barChart.seriesData
+          data: [120, 200, 150, 80, 70, 110, 130]
+        }
+      ]
+    };
+
+    const barChartDom = document.getElementById('bar-chart') as HTMLElement;
+    const barChart = echarts.init(barChartDom);
+    barChart.setOption(this.barChartOptions);
+  }
+
+  initializePieChart(): void {
+    this.pieChartOptions = {
+      title: {
+        text: 'Payment Methods'
+      },
+      tooltip: {
+        trigger: 'item'
+      },
+      series: [
+        {
+          name: 'Payments',
+          type: 'pie',
+          radius: '50%',
+          // data: this.fetchedChartData.pieChart.seriesData,
+          data: [120, 200, 150, 80, 70, 110, 130],
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
+
+    const pieChartDom = document.getElementById('pie-chart') as HTMLElement;
+    const pieChart = echarts.init(pieChartDom);
+    pieChart.setOption(this.pieChartOptions);
   }
 }

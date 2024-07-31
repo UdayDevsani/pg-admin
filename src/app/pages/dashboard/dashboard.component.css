@@ -1,0 +1,42 @@
+.pagetitle {
+  margin-bottom: 20px;
+}
+
+.breadcrumb {
+  background: none;
+  margin-bottom: 0;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  color: #4caf50;
+}
+
+.info-card .card-body {
+  padding: 20px;
+}
+
+.info-card h5 {
+  margin-bottom: 20px;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.ps-3 {
+  padding-left: 1rem !important;
+}
+
+.text-success {
+  color: #4caf50 !important;
+}
+
+.text-danger {
+  color: #f44336 !important;
+}

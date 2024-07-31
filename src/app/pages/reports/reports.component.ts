@@ -20,7 +20,7 @@ export class ReportsComponent implements OnInit {
   fetchOccupancyReport(): void {
     this.reportService.getOccupancyReport().subscribe(
       data => {
-        console.log('Occupancy report data:', data); // Add this line
+        console.log('Occupancy report data:', data);
         this.occupancyReports = data;
       },
       err => {
@@ -32,7 +32,7 @@ export class ReportsComponent implements OnInit {
   fetchPaymentReport(): void {
     this.reportService.getPaymentReport().subscribe(
       data => {
-        console.log('Payment report data:', data); // Add this line
+        console.log('Payment report data:', data);
         this.paymentReports = data;
       },
       err => {
